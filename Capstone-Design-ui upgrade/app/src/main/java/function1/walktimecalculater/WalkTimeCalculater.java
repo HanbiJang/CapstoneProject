@@ -17,7 +17,6 @@ import function1.alldogsforwalktime.AllDogs;
 import function1.alldogsforwalktime.LargeDogs;
 import function1.alldogsforwalktime.MediumDogs;
 import function1.alldogsforwalktime.SmallDogs;
-import function1.questions.Quastions;
 import myinformation.DbUserInform;
 
 
@@ -289,7 +288,7 @@ public class WalkTimeCalculater {
                 }
 
                 else { //lineNum%4 == 0
-                    buffer.setProgressValue(readLine);
+                    buffer.setProgressValue(Integer.parseInt(readLine));
                 }
                 lineNum++;
                 popupResultsList.add(buffer);

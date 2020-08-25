@@ -2,6 +2,7 @@
     <string name="app_name">MyRegisterLogin</string>
 
     <string-array name="dogSpecies">
+        <item></item>
         <item>포메라니안</item>
         <item>비숑프리제</item>
         <item>푸들</item>
@@ -55,6 +56,7 @@
     </string-array>
 
     <string-array name="dogSize">
+        <item></item>
         <item>소형견</item>
         <item>중형견</item>
         <item>대형견</item>

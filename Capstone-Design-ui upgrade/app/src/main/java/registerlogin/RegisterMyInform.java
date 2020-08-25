@@ -81,10 +81,10 @@ public class RegisterMyInform extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View view) {
-                String myDogAge="";
-                String myDogSize = "";
-                String myDogSpecies = "";
-                String badDog = "";
+                String myDogAge=null;
+                String myDogSize =null;
+                String myDogSpecies =null;
+                String badDog = null;
 
 
                 //회원가입
@@ -130,13 +130,14 @@ public class RegisterMyInform extends AppCompatActivity {
                             boolean success = jsonObject.getBoolean("success"); //php문에서 success 값을 가져옴 성공여부 알수 있음
                             if (success)  //Myinformcheck 액티비티로 화면전환, 내정보 확인함
                             {
+
                                 //로그인 화면으로 돌아가기
                                 Intent intent = new Intent(RegisterMyInform.this, LoginActivity.class); //시작 액티비티 , 이동할 액티비티
                                 startActivity(intent);
 
                             } else
                             {    //등록 실패
-                                Toast.makeText(getApplicationContext(), "회원가입 실패", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "회원가입 실패. 관리자에게 문의하세요.", Toast.LENGTH_LONG).show();
                                 return;
                             }
 
@@ -149,64 +150,76 @@ public class RegisterMyInform extends AppCompatActivity {
                 };
 
                 //반려견 나이 입력
-                Integer myDogAge_int =0;
-                try {
-                    if (et_mydogage.getText().toString() != null){
-                        myDogAge_int = Integer.parseInt(et_mydogage.getText().toString());
-                    }
-
-                }catch(NumberFormatException e){
-                    myDogAge_int =0 ;
-                }
+                Integer myDogAge_int =null;
+                String myDogAge_str = null;
+                myDogAge_str = et_mydogage.getText().toString();
 
                 //스피너에서 값 잡아서 넣기
                 myDogSpecies = String.valueOf(sp_mydogspecies.getSelectedItem());
                 badDog = String.valueOf(sp_baddog.getSelectedItem());
 
-                //개 이름으로 무게종류 찾기
-                AllDogs allDogs = new AllDogs();
-                myDogSize = allDogs.findDogSize(myDogSpecies);
+
+                if((myDogSpecies.length() != 0) && (badDog.length() != 0) && (myDogAge_str.length() != 0))
+                {
 
 
-                //서버로 볼리를 이용해서 (레지스터 리퀘스트) 요청을 함 (회원가입)
-                RegisterRequest registerRequest = new RegisterRequest(userID,userPassword, userName, responseListner);
-                RequestQueue queue1 = Volley.newRequestQueue(RegisterMyInform.this);
-                queue1.add(registerRequest);
+                    //숫자로 변환하기
+                    myDogAge_int = Integer.parseInt(myDogAge_str);
 
-                //서버로 볼리를 이용해서 (레지스터 리퀘스트) 요청을 함
-                MyInformChangeRequest myInformChangeRequest = new MyInformChangeRequest(userID ,myDogAge_int,myDogSize, myDogSpecies, badDog,responseListner);
-                RequestQueue queue = Volley.newRequestQueue(registerlogin.RegisterMyInform.this);
-                queue.add(myInformChangeRequest);
+                    //개 이름으로 무게종류 찾기
+
+                    AllDogs allDogs = new AllDogs();
+                    myDogSize = allDogs.findDogSize(myDogSpecies);
 
 
-                try(
-                        FileWriter fw = new FileWriter(saveFile+fileName, false); //덮어쓰기
-                ){
 
-                    //사용자 정보 저장
 
-                    StringBuffer str = new StringBuffer();
-                    //리스트 속 모든 정보 (마지막꺼 뺀) + 지금 들어가는 정보 저장 (덮어쓰기)
-                    //지금 덮어쓰려는 정보 덮어쓰기
+                    //서버로 볼리를 이용해서 (레지스터 리퀘스트) 요청을 함 (회원가입)
+                    RegisterRequest registerRequest = new RegisterRequest(userID,userPassword, userName, responseListner);
+                    RequestQueue queue1 = Volley.newRequestQueue(RegisterMyInform.this);
+                    queue1.add(registerRequest);
 
-                    str.append(userID +"\n");
-                    str.append(myDogAge_int +"\n");
-                    str.append(myDogSize +"\n");
-                    str.append(myDogSpecies +"\n");
-                    str.append(badDog +"\n");
+                    //서버로 볼리를 이용해서 (레지스터 리퀘스트) 요청을 함
+                    MyInformChangeRequest myInformChangeRequest = new MyInformChangeRequest(userID ,myDogAge_int,myDogSize, myDogSpecies, badDog,responseListner);
+                    RequestQueue queue = Volley.newRequestQueue(registerlogin.RegisterMyInform.this);
+                    queue.add(myInformChangeRequest);
 
-                    //파일 쓰기
-                    fw.write(String.valueOf(str));
 
-                    Log.d("77777777777777777777", String.valueOf(str)+"*************************");
+                    try(
+                            FileWriter fw = new FileWriter(saveFile+fileName, false); //덮어쓰기
+                    ){
 
-                }catch(IOException e1) {
-                    // TODO Auto-generated catch block
-                    Log.d("77777777777777777777", " 파일 덮어쓰기 안됨 사용자 정보 "+"**********************");
-                    e1.printStackTrace();
+                        //사용자 정보 저장
+
+                        StringBuffer str = new StringBuffer();
+                        //리스트 속 모든 정보 (마지막꺼 뺀) + 지금 들어가는 정보 저장 (덮어쓰기)
+                        //지금 덮어쓰려는 정보 덮어쓰기
+
+                        str.append(userID +"\n");
+                        str.append(myDogAge_int +"\n");
+                        str.append(myDogSize +"\n");
+                        str.append(myDogSpecies +"\n");
+                        str.append(badDog +"\n");
+
+                        //파일 쓰기
+                        fw.write(String.valueOf(str));
+
+                        Log.d("77777777777777777777", String.valueOf(str)+"*************************");
+
+                    }catch(IOException e1) {
+                        // TODO Auto-generated catch block
+                        Log.d("77777777777777777777", " 파일 덮어쓰기 안됨 사용자 정보 "+"**********************");
+                        e1.printStackTrace();
+                    }
+
+                    Toast.makeText(getApplicationContext(), "회원가입 되었습니다", Toast.LENGTH_LONG).show();
+
+                    Log.d("1", "강아지 정보 무입력 전송 가입\n" + myDogSpecies + "   " + badDog);
+
                 }
-
-                Toast.makeText(getApplicationContext(), "회원가입 되었습니다", Toast.LENGTH_LONG).show();
+                else{
+                    Toast.makeText(RegisterMyInform.this, "입력 정보를 확인해주세요.", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

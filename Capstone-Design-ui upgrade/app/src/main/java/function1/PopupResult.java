@@ -9,7 +9,7 @@ public class PopupResult {
 
     String is_2_yes;
 
-    String progressValue;
+    Integer progressValue;
 
     public String getToday() {
         return today;
@@ -23,7 +23,7 @@ public class PopupResult {
         return is_2_yes;
     }
 
-    public String getProgressValue() {
+    public Integer getProgressValue() {
         return progressValue;
     }
 
@@ -35,7 +35,7 @@ public class PopupResult {
         this.is_2_yes = is_2_yes;
     }
 
-    public void setProgressValue(String progressValue) {
+    public void setProgressValue(Integer progressValue) {
         this.progressValue = progressValue;
     }
 

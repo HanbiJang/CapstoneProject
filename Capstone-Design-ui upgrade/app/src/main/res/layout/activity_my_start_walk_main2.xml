@@ -92,7 +92,7 @@
         android:background="@drawable/button_background_round"
         android:backgroundTint="#FF1DDF98"
         android:padding="15dp"
-        android:text="0회 00분"
+        android:text="0회 00시간 00분 00초"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="23dp"

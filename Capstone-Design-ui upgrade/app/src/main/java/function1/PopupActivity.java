@@ -138,25 +138,25 @@ public class PopupActivity extends Activity {
 
                             String readLine = null ;
                             Integer i = 1;
+                            PopupResult buffer = new PopupResult();
 
-                            while( ( readLine =  br.readLine()) != null ){
+                            while( ( readLine = br.readLine() ) != null ){
                                 //readLine 저장해야함
                                 // 1: (나머지 3) 날짜 2: (나머지 2) 1번 yes 여부 3: (나머지 1) 2번 yes여부 4: (나머지 0) 만족도 점수
-                                PopupResult buffer = new PopupResult();
 
                                 buffer.today = readLine;
-                                buffer.is_1_yes = readLine;
-                                buffer.is_2_yes = readLine;
-                                buffer.progressValue = readLine;
+                                buffer.is_1_yes = br.readLine();
+                                buffer.is_2_yes = br.readLine();
+                                buffer.progressValue = Integer.parseInt(br.readLine());
 
-                                lineNum= i*4;
                                 popupResultsList.add(buffer);
-                                i++;
-                                Toast.makeText(PopupActivity.this, "마지막 날짜" + popupResultsList.get(lineNum/4-1).today, Toast.LENGTH_SHORT).show();
 
-                                Log.d("77777777777777777777", lineNum/4-1 +"d읽기**********************");
+                                Log.d("123", "\n"+popupResultsList.get(i-1).today +"\n"+ popupResultsList.get(i-1).is_1_yes +"\n"+ popupResultsList.get(i-1).is_2_yes +"\n"+ popupResultsList.get(i-1).progressValue +"\n"+"모든 요소"  );
+                                i++;
+
 
                             }
+                            //끝
 
                         }catch ( IOException e ) {
                             System.out.println(e);
@@ -179,8 +179,7 @@ public class PopupActivity extends Activity {
                                 //파일 쓰기
                                 fw_append.write(String.valueOf(str));
 
-                                Log.d("77777777777777777777", String.valueOf(str)+"전에 쓴 내용이 없을 때 이어쓰기 성공 **********************");
-                                Toast.makeText(PopupActivity.this, "내용이없어서 성공적으로 이어썼습니다.", Toast.LENGTH_SHORT).show();
+//                                Log.d("77777777777777777777", String.valueOf(str)+"전에 쓴 내용이 없을 때 이어쓰기 성공 **********************");
 
                             } catch (IOException e1) {
                                 // TODO Auto-generated catch block
@@ -194,17 +193,8 @@ public class PopupActivity extends Activity {
                             //마지막 popupResult 요소 = 날짜가 가장 늦음
 
                             //날짜가 같다면
-                            if(format1.format(today).toString().equals(popupResultsList.get((lineNum/4 -1)).today)){
+                            if(format1.format(today).toString().equals(popupResultsList.get(popupResultsList.size() -1 ).today)){
 
-
-                                Log.d("77777777777777777777", "마지막 수정 날짜" + format1.format(today).toString()+" **********************");
-
-                                Log.d("77777777777777777777", "popupResultsList 날짜" + popupResultsList.get(lineNum/4 -1).today+"**********************");
-
-
-//                                Toast.makeText(PopupActivity.this, "마지막 수정 날짜" + format1.format(today).toString().today, Toast.LENGTH_SHORT).show();
-
-                                Toast.makeText(PopupActivity.this, "popupResultsList 날짜" + popupResultsList.get(lineNum/4 -1).today, Toast.LENGTH_SHORT).show();
                                 try(
                                         FileWriter fw = new FileWriter(saveFile+fileName, false);
                                 ){
@@ -215,7 +205,7 @@ public class PopupActivity extends Activity {
                                     //리스트 속 모든 정보 (마지막꺼 뺀) + 지금 들어가는 정보 저장 (덮어쓰기)
                                     // 1 날짜 2 yes1 3 yes2 4만족도 점수
                                     StringBuffer str = new StringBuffer();
-                                    for(int i=0 ; i < lineNum/4 ; i++){
+                                    for(int i=0 ; i < popupResultsList.size()-2 ; i++){
                                         str.append(popupResultsList.get(i).getToday()+"\n");
                                         str.append(popupResultsList.get(i).getIs_1_yes()+"\n");
                                         str.append(popupResultsList.get(i).getIs_2_yes()+"\n");
@@ -230,7 +220,7 @@ public class PopupActivity extends Activity {
 
                                     //파일 쓰기
                                     fw.write(String.valueOf(str));
-                                    Log.d("77777777777777777777", String.valueOf(str)+"날짜가 같을 때 덮어쓰기 저장 성공**********************");
+//                                    Log.d("77777777777777777777", String.valueOf(str)+"날짜가 같을 때 덮어쓰기 저장 성공**********************");
 
 
                                 } catch (IOException e1) {
@@ -243,13 +233,6 @@ public class PopupActivity extends Activity {
                             }
 
                             else{ //날짜가 다르다면
-
-                                Log.d("77777777777777777777", "마지막 수정 날짜" + format1.format(today).toString()+" **********************");
-
-                                Log.d("77777777777777777777", "popupResuls낭다 ㅎㅎ tsList 날짜" + popupResultsList.get(lineNum/4 -1).today+"**********************");
-                                Log.d("77777777777777777777", "popupResultsList 날짜" + popupResultsList.get(lineNum/4 -1).is_1_yes+"**********************");
-                                Log.d("77777777777777777777", "popupResultsList 날짜" + popupResultsList.get(lineNum/4 -1).is_2_yes+"**********************");
-                                Log.d("77777777777777777777", "popupResultsList 날짜" + popupResultsList.get(lineNum/4 -1).progressValue+"**********************");
 
                                 //파일 이어쓰기
                                 try(
@@ -265,8 +248,8 @@ public class PopupActivity extends Activity {
                                     //파일 쓰기
                                     fw_append.write(String.valueOf(str));
 
-                                    Log.d("77777777777777777777", String.valueOf(str)+"날짜가 다를 때 이어쓰기 저장 성공**********************");
-                                    Toast.makeText(PopupActivity.this, "성공적으로 날짜가 다를때 이어쓰기 저장 성공.", Toast.LENGTH_SHORT).show();
+//                                    Log.d("77777777777777777777", String.valueOf(str)+"위 정보를 날짜가 다를 때 이어쓰기 저장 성공**********************");
+//                                    Toast.makeText(PopupActivity.this, "성공적으로 날짜가 다를때 이어쓰기 저장 성공.", Toast.LENGTH_SHORT).show();
 
                                 } catch (IOException e1) {
                                     // TODO Auto-generated catch block
@@ -307,7 +290,9 @@ public class PopupActivity extends Activity {
                     new_progressValue =100;
                 }
                 else{
-                    new_progressValue = new_progressValue - 10;
+                    if (new_progressValue >= 0 && new_progressValue <= 100 ) {
+                        new_progressValue = new_progressValue - 10;
+                    }
                 }
 
                 progressBar.setProgress(new_progressValue);
@@ -318,14 +303,17 @@ public class PopupActivity extends Activity {
         btn_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (new_progressValue < 0) {
+                if (new_progressValue < 0 ) {
                     new_progressValue = 0;
                 }
                 else if(new_progressValue > 100){
                     new_progressValue =100;
                 }
                 else{
-                    new_progressValue = new_progressValue + 10;
+
+                    if (new_progressValue >= 0 && new_progressValue <= 100 ) {
+                        new_progressValue = new_progressValue + 10;
+                    }
                 }
 
                 progressBar.setProgress(new_progressValue);

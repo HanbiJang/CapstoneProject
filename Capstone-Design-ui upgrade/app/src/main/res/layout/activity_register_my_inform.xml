@@ -70,13 +70,14 @@
         android:hint="월 단위로 입력하세요"
         android:background="@drawable/button_background_round"
         android:backgroundTint="#FFFFFF"
-        android:inputType="textPersonName"
         android:padding="10dp"
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView21" />
+        app:layout_constraintTop_toBottomOf="@+id/textView21"
+        android:inputType="number"
+        android:digits="0123456789" />
 
     <TextView
         android:id="@+id/textView22"
