@@ -3,12 +3,16 @@ package main;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-
 import android.view.WindowManager;
 import android.widget.CheckBox;
 import com.example.myregisterlogin.R;
 import me.relex.circleindicator.CircleIndicator;
+import registerlogin.LoginActivity;
+import shareddata.PreferenceManager;
+
 import androidx.fragment.app.FragmentPagerAdapter;
 
 
@@ -17,7 +21,8 @@ public class StartActivity extends AppCompatActivity {
 
     FragmentPagerAdapter adapterViewPager;
 
-    private  CheckBox checkBox;
+    private Context mContext;
+    private  CheckBox cb_dontsee;
     int count = 0;
 
     @Override
@@ -30,7 +35,7 @@ public class StartActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_start);
 
-        checkBox = (CheckBox)findViewById(R.id.checkBox);
+        cb_dontsee = findViewById(R.id.cb_dontsee);
 
         ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
 
@@ -39,6 +44,18 @@ public class StartActivity extends AppCompatActivity {
 
         CircleIndicator indicator = (CircleIndicator) findViewById(R.id.indicator);
         indicator.setViewPager(vpPager);
+
+        mContext = this;
+        //sharedPreference에 있는 dontsee가 true 이면 바로 로그인 화면으로 직행함
+        boolean dontsee = PreferenceManager.getBoolean(mContext,"dontsee");
+
+        if(dontsee == true){
+            Intent intent = new Intent(mContext, LoginActivity.class);
+            startActivity(intent);
+        }
+        else{ //dontsee 에 값이 없거나 false라면
+            //아무것도 안함
+        }
 
     }
 }

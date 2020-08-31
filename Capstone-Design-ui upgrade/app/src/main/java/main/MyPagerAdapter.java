@@ -22,7 +22,6 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-
                 return Fragment_1.newInstance(0, "Page # 1");
             case 1:
                 return Fragment_2.newInstance(1, "Page # 2");

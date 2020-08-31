@@ -159,6 +159,8 @@ public class RegisterMyInform extends AppCompatActivity {
                 badDog = String.valueOf(sp_baddog.getSelectedItem());
 
 
+                Log.d("9999", "회원가입 문제" + myDogSpecies );
+
                 if((myDogSpecies.length() != 0) && (badDog.length() != 0) && (myDogAge_str.length() != 0))
                 {
 
@@ -171,9 +173,6 @@ public class RegisterMyInform extends AppCompatActivity {
                     AllDogs allDogs = new AllDogs();
                     myDogSize = allDogs.findDogSize(myDogSpecies);
 
-
-
-
                     //서버로 볼리를 이용해서 (레지스터 리퀘스트) 요청을 함 (회원가입)
                     RegisterRequest registerRequest = new RegisterRequest(userID,userPassword, userName, responseListner);
                     RequestQueue queue1 = Volley.newRequestQueue(RegisterMyInform.this);
@@ -184,6 +183,8 @@ public class RegisterMyInform extends AppCompatActivity {
                     RequestQueue queue = Volley.newRequestQueue(registerlogin.RegisterMyInform.this);
                     queue.add(myInformChangeRequest);
 
+
+                    //파일저장
 
                     try(
                             FileWriter fw = new FileWriter(saveFile+fileName, false); //덮어쓰기
@@ -205,16 +206,13 @@ public class RegisterMyInform extends AppCompatActivity {
                         fw.write(String.valueOf(str));
 
                         Log.d("77777777777777777777", String.valueOf(str)+"*************************");
+                        Toast.makeText(getApplicationContext(), "회원가입 되었습니다", Toast.LENGTH_LONG).show();
 
                     }catch(IOException e1) {
                         // TODO Auto-generated catch block
-                        Log.d("77777777777777777777", " 파일 덮어쓰기 안됨 사용자 정보 "+"**********************");
                         e1.printStackTrace();
                     }
 
-                    Toast.makeText(getApplicationContext(), "회원가입 되었습니다", Toast.LENGTH_LONG).show();
-
-                    Log.d("1", "강아지 정보 무입력 전송 가입\n" + myDogSpecies + "   " + badDog);
 
                 }
                 else{

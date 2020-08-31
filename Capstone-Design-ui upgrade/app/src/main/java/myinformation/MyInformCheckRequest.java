@@ -18,10 +18,11 @@ public class MyInformCheckRequest extends StringRequest {
     //서버 url 설정하기
     final static private String URL = "http://bi1724.dothome.co.kr/MyInformCheck.php"; //반려견 정보 php파일
     private Map<String,String> map;
-    public MyInformCheckRequest(String userID,Integer myDogAge, String myDogSize,String myDogSpecies,String badDog,Response.Listener<String> listner){
+    public MyInformCheckRequest(String userID, String userName, Integer myDogAge, String myDogSize,String myDogSpecies,String badDog,Response.Listener<String> listner){
         super(Method.POST,URL,listner,null);
         map = new HashMap<>();
         map.put("userID",userID);
+        map.put("userName",userName);
         map.put("myDogAge",myDogAge+"");
         map.put("myDogSize",myDogSize);
         map.put("myDogSpecies",myDogSpecies);

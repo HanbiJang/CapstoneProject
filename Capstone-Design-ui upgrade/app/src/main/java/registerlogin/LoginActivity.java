@@ -2,6 +2,7 @@ package registerlogin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import main.MainActivity;
+import shareddata.PreferenceManager;
+
 import com.example.myregisterlogin.R;
 
 import org.json.JSONException;
@@ -24,6 +27,7 @@ public class LoginActivity extends AppCompatActivity
 
     private EditText et_id, et_password;
     private Button btn_login, btn_register;
+    private Context mContext;
 
 
     @Override
@@ -48,6 +52,64 @@ public class LoginActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
+        mContext = this;
+
+        ////////////자동로그인 기능//////////////
+//        //로그인 버튼 클릭 전에 로그인을 바로 실행해야함
+//        //sharedPreference 에 저장된 (로그인이 성공된) 아이디, 비밀번호 값으로 로그인을 시도함
+//        final String loginID = PreferenceManager.getString(mContext,"loginID");
+//        String loginPassword = PreferenceManager.getString(mContext,"loginPassword");
+//        if(loginID.equals("") || loginPassword.equals("")) { //저장된 데이터가 없을 때
+//            //아무 동작 하지 않음
+//        }
+//
+//        else{ //sharedPreference 안에 정보가 있을 때
+//            //그 저장된 정보로 로그인을 시도함
+//            Response.Listener<String> responseListener;
+//
+//            ///
+//            responseListener = new Response.Listener<String>() {
+//                @Override
+//                public void onResponse(String response)
+//                {
+//                    try
+//                    {
+//                        JSONObject jsonObject = new JSONObject(response); //알트+엔터로 오류 처리
+//                        boolean success = jsonObject.getBoolean("success"); //php문에서 success 값을 가져옴 성공여부 알수 있음
+//                        if (success)//서버로 로그인 성공 //서버로부터 유저 아이디와 패스워드가 맞느냐 틀리냐 구분, 로그인 기능 구현
+//                        {
+//                            String userID = jsonObject.getString("userID");
+//                            String userPassword = jsonObject.getString("userPassword"); //서버에서 변수로 값 받아오기
+//
+//                            Intent intent = new Intent(LoginActivity.this, MainActivity.class); //메인 액티비티로 서버에서 받아온 아이디와 비밀번호 인텐트에 실어서 주기
+//                            intent.putExtra("userID", userID);
+//                            intent.putExtra("userPassword", userPassword);
+//                            startActivity(intent);
+//
+//                            //로그인 성공 메시지 띄우기
+//                            Toast.makeText(mContext, "아이디: " + loginID + "님 환영해요!", Toast.LENGTH_SHORT).show();
+//
+//                        }
+//
+//                    } catch (JSONException e)
+//                    {
+//                        e.printStackTrace();
+//                    }
+//
+//                }
+//            };
+//            //서버로 볼리를 이용해서 (로그인 리퀘스트)요청을 함
+//            LoginRequest loginRequest = new LoginRequest(loginID, loginPassword, responseListener);
+//            RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
+//            queue.add(loginRequest);
+//
+//            ///
+//        }
+
+
+        ////////////자동로그인 기능//////////////
+
 
         btn_login.setOnClickListener(new View.OnClickListener()  //로그인 버튼을 클릭시 수행
         {
@@ -76,6 +138,24 @@ public class LoginActivity extends AppCompatActivity
                                 intent.putExtra("userID", userID);
                                 intent.putExtra("userPassword", userPassword);
                                 startActivity(intent);
+
+
+                                //로그인을 성공했을 시, sharedPreference에 로그인이 성공된 사용자 아이디, 비번 값을 저장함
+                                //지속 로그인 기능 -sharedPreference 기능 활용
+
+                                //먼저  sharedPreference 를 읽고 값이 있는지 확인
+                                String loginID = PreferenceManager.getString(mContext,"loginID");
+                                String loginPassword = PreferenceManager.getString(mContext,"loginPassword");
+                                if(loginID.equals("") || loginPassword.equals("")){ //저장된 데이터가 없을 때
+                                    loginID = "";
+                                    loginPassword = "";
+                                    PreferenceManager.setString(mContext, "loginID",userID);
+                                    PreferenceManager.setString(mContext, "loginPassword",userPassword);
+                                }
+
+                                //로그인 성공 메시지 띄우기
+                                Toast.makeText(mContext, "아이디: " + userID + "님 환영해요!", Toast.LENGTH_SHORT).show();
+
 
                             } else  //로그인 실패
                             {

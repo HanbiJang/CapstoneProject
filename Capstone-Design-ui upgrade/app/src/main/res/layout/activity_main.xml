@@ -26,12 +26,12 @@
 
             <ImageButton
                 android:id="@+id/btn_myinform"
-                android:layout_width="50dp"
-                android:layout_height="61dp"
+                android:layout_width="13dp"
+                android:layout_height="60dp"
                 android:layout_weight="1"
                 android:background="#FDFDFD"
                 android:tint="#1DDF98"
-                app:srcCompat="@android:drawable/ic_menu_sort_by_size" />
+                app:srcCompat="@drawable/user_btn_icon" />
 
 
             <TextView
@@ -40,19 +40,19 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:padding="15dp"
-                android:text="  모두의 산책"
+                android:text="    모두의  산책"
                 android:textColor="#17DE95"
                 android:textSize="25dp" />
 
             <ImageButton
-                android:id="@+id/imageButton2"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_marginBottom="10dp"
+                android:id="@+id/btn_help"
+                android:layout_width="14dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="0dp"
                 android:layout_weight="1"
                 android:background="#FFFFFF"
                 android:tint="#1DDF98"
-                app:srcCompat="@android:drawable/ic_popup_reminder" />
+                app:srcCompat="@drawable/information_btn_icon" />
 
         </LinearLayout>
 
@@ -68,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
-            android:text="반가워요. \n즐거운 산책을 시작해볼까요?"
+            android:text="반가워요, \n즐거운 산책을 시작해볼까요?"
             android:textAlignment="center"
             android:textColor="#272727"
             android:textSize="23dp" />
@@ -132,7 +132,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
             android:layout_weight="1"
-            android:text="오늘 산책 어땠어요?"
+            android:text="오늘 산책 만족했나요?"
             android:textAlignment="center"
             android:textColor="#272727"
             android:textSize="23dp" />

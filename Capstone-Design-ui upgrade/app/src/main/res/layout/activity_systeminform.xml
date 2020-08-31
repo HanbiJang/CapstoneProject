@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/textView31"
+        android:layout_width="wrap_content"
+        android:layout_height="59dp"
+
+        android:layout_marginTop="7dp"
+        android:gravity="center_vertical"
+        android:text="도움말"
+        android:textColor="#FF1DDF98"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="52dp"
+        android:layout_height="57dp"
+        android:layout_marginEnd="90dp"
+        android:layout_marginRight="90dp"
+        android:layout_weight="1"
+        android:background="#FFFFFF"
+        android:tint="#000000"
+        app:layout_constraintEnd_toStartOf="@+id/textView20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/abc_vector_test" />
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="64dp"
+        android:background="#CDCDCD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView35"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="'모두의 산책'은 어떤 어플인가요? ▼"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.177"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view4" />
+
+    <TextView
+        android:id="@+id/textView36"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="모두의 산책은 반려견 산책에 도움을 주는 어플입니다. :)\n 사용자의 반려견과 실제로 행한 산책 정보를 기반으로 \n적절한 산책 시간을 추천해주고,\n사용자의 위치에 기반한 산책 경로를 추천해줍니다. "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView35" />
+
+    <TextView
+        android:id="@+id/textView37"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="반려견의 나이나 종을 수정하고 싶어요. ▼"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.217"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView36" />
+
+    <TextView
+        android:id="@+id/textView39"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:text="'산책하기' 는 어떤 기능인가요? ▼"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.165"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView36" />
+
+    <TextView
+        android:id="@+id/textView41"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="260dp"
+        android:text="'지도보기' 는 어떤 기능인가요? ▼"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.155"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView36" />
+
+    <TextView
+        android:id="@+id/textView38"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="어플의 메인화면 로고 왼쪽에 있는 사용자 정보 탭에서 \n수정 가능합니다"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView37" />
+
+    <TextView
+        android:id="@+id/textView40"
+        android:layout_width="371dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="112dp"
+        android:text="'산책하기' 에서는 반려견에게 적절한 산책 시간과 이전의 산책 결과를 확인할 수 있고, 산책 시작과 함께 산책을 기록할 수 있습\n니다."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView37" />
+
+    <TextView
+        android:id="@+id/textView42"
+        android:layout_width="367dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="244dp"
+        android:text="'지도보기' 는 사용자의 위치에 기반하여 산책하기 좋은 장소를 추천해주고, 경로를 확인할 수 있습니다. 또한 산책 장소에 대한 다른 사용자의 리뷰 확인과 작성이 가능합니다."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.772"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView37" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

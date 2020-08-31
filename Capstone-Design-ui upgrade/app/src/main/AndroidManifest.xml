@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.myregisterlogin" >
+    package="com.example.myregisterlogin">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -10,12 +10,16 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/app_icon"
         android:label="모두의 산책"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true" >
+        android:usesCleartextTraffic="true">
+        <activity android:name="myinformation.MySettings"></activity>
+        <activity android:name="main.SystemInform" />
         <activity android:name="registerlogin.RegisterMyInform" />
         <activity
             android:name="function1.PopupActivity"
@@ -26,7 +30,7 @@
         <activity
             android:name="main.SplashActivity"
             android:screenOrientation="fullSensor"
-            android:theme="@style/SplashTheme" >
+            android:theme="@style/SplashTheme">
             <intent-filter> <!-- 스플래시 이미지 화면을 첫화면으로 설정하기 -->
                 <action android:name="android.intent.action.MAIN" />
 

@@ -38,7 +38,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginRight="20dp"
         android:max="100"
-        android:progress="20"
+        android:progress="0"
         android:progressDrawable="@drawable/myprogressbar" />
 
     <TextView
@@ -109,29 +109,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
+        android:gravity="center"
         android:orientation="horizontal">
 
 
         <ImageButton
             android:id="@+id/imgbtn_play"
-            android:layout_width="150dp"
+            android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginLeft="128dp"
             android:layout_marginRight="128dp"
-
-            android:background="@drawable/button_background_round"
+            android:background="@drawable/button_background_circle"
             android:backgroundTint="#51ACACAC"
             app:srcCompat="@android:drawable/ic_media_play" />
 
         <ImageButton
             android:id="@+id/imgbtn_stop"
-            android:layout_width="150dp"
+            android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginLeft="128dp"
             android:layout_marginRight="128dp"
-
-            android:background="@drawable/button_background_round"
+            android:background="@drawable/button_background_circle"
             android:backgroundTint="#51ACACAC"
+            android:visibility="gone"
             app:srcCompat="@android:drawable/ic_media_pause" />
 
     </LinearLayout>

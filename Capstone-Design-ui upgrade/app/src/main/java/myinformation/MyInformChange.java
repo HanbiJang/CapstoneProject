@@ -36,6 +36,7 @@ import function1.alldogsforwalktime.LargeDogs;
 import function1.alldogsforwalktime.MediumDogs;
 import function1.alldogsforwalktime.SmallDogs;
 import main.MainActivity;
+import registerlogin.RegisterMyInform;
 
 public class MyInformChange extends AppCompatActivity {
 
@@ -135,55 +136,61 @@ public class MyInformChange extends AppCompatActivity {
                 };
 
                 //반려견 나이 입력
-                Integer myDogAge_int;
-                try {
-                    myDogAge_int = Integer.parseInt(et_mydogage.getText().toString());
-                }catch(NumberFormatException e){
-                    myDogAge_int=0;
-                }
+                Integer myDogAge_int =null;
+                String myDogAge_str = null;
+                myDogAge_str = et_mydogage.getText().toString();
 
                 //스피너에서 값 잡아서 넣기
                 myDogSpecies = String.valueOf(sp_mydogspecies.getSelectedItem());
                 badDog = String.valueOf(sp_baddog.getSelectedItem());
 
-                //개 이름으로 무게종류 찾기
-                AllDogs allDogs = new AllDogs();
-                myDogSize = allDogs.findDogSize(myDogSpecies);
+                if((myDogSpecies.length() != 0) && (badDog.length() != 0) && (myDogAge_str.length() != 0))
+                {
+                    //숫자로 변환하기
+                    myDogAge_int = Integer.parseInt(myDogAge_str);
+
+                    //개 이름으로 무게종류 찾기
+
+                    AllDogs allDogs = new AllDogs();
+                    myDogSize = allDogs.findDogSize(myDogSpecies);
 
 
-                //서버로 볼리를 이용해서 (레지스터 리퀘스트) 요청을 함
-                MyInformChangeRequest myInformChangeRequest = new MyInformChangeRequest(userID ,myDogAge_int,myDogSize, myDogSpecies, badDog,responseListner);
-                RequestQueue queue = Volley.newRequestQueue(MyInformChange.this);
-                queue.add(myInformChangeRequest);
+                    try(
+                            FileWriter fw = new FileWriter(saveFile+fileName, false); //덮어쓰기
+                    ){
 
+                        //사용자 정보 저장
 
-                try(
-                        FileWriter fw = new FileWriter(saveFile+fileName, false); //덮어쓰기
-                ){
+                        StringBuffer str = new StringBuffer();
+                        //리스트 속 모든 정보 (마지막꺼 뺀) + 지금 들어가는 정보 저장 (덮어쓰기)
+                        //지금 덮어쓰려는 정보 덮어쓰기
 
-                    //사용자 정보 저장
+                        str.append(userID +"\n");
+                        str.append(myDogAge_int +"\n");
+                        str.append(myDogSize +"\n");
+                        str.append(myDogSpecies +"\n");
+                        str.append(badDog +"\n");
 
-                    StringBuffer str = new StringBuffer();
-                    //리스트 속 모든 정보 (마지막꺼 뺀) + 지금 들어가는 정보 저장 (덮어쓰기)
-                    //지금 덮어쓰려는 정보 덮어쓰기
+                        //파일 쓰기
+                        fw.write(String.valueOf(str));
 
-                    str.append(userID +"\n");
-                    str.append(myDogAge_int +"\n");
-                    str.append(myDogSize +"\n");
-                    str.append(myDogSpecies +"\n");
-                    str.append(badDog +"\n");
+                        Log.d("77777777777777777777", String.valueOf(str)+"*************************");
 
-                    //파일 쓰기
-                    fw.write(String.valueOf(str));
+                    }catch(IOException e1) {
+                        // TODO Auto-generated catch block
+                        Log.d("77777777777777777777", " 파일 덮어쓰기 안됨 사용자 정보 "+"**********************");
+                        e1.printStackTrace();
+                    }
 
-                    Log.d("77777777777777777777", String.valueOf(str)+"*************************");
+                    //서버로 볼리를 이용해서 (레지스터 리퀘스트) 요청을 함
+                    MyInformChangeRequest myInformChangeRequest = new MyInformChangeRequest(userID ,myDogAge_int,myDogSize, myDogSpecies, badDog,responseListner);
+                    RequestQueue queue = Volley.newRequestQueue(MyInformChange.this);
+                    queue.add(myInformChangeRequest);
 
-                }catch(IOException e1) {
-                    // TODO Auto-generated catch block
-                    Log.d("77777777777777777777", " 파일 덮어쓰기 안됨 사용자 정보 "+"**********************");
-                    e1.printStackTrace();
                 }
-
+                else{
+                    Toast.makeText(MyInformChange.this, "입력 정보를 확인해주세요.", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

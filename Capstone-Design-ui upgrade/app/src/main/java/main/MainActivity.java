@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tv_id, tv_password;
 
     private long backBtnTime  =0;
-    private ImageButton btn_myinform;
+    private ImageButton btn_myinform, btn_help;
     private Button btn_startwalk;
     private Button btn_map;
     private Button btn_input;
@@ -48,8 +48,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //상태창 숨기기기
-
        setContentView(R.layout.activity_main);
         //로그인 화면에서 넘어온 아이디 정보 받기
         Intent intent = getIntent();
@@ -64,6 +62,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent =  new Intent(MainActivity.this, MyInformCheck.class);
+                //MainActovity: 회원의 아이디 정보 넘기기
+                intent.putExtra("userID", userID);
+                startActivity(intent);
+            }
+        });
+
+        //도움말 기능
+        btn_help = (ImageButton) findViewById(R.id.btn_help);
+
+        btn_help.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Intent intent =  new Intent(MainActivity.this, SystemInform.class);
                 //MainActovity: 회원의 아이디 정보 넘기기
                 intent.putExtra("userID", userID);
                 startActivity(intent);

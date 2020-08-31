@@ -12,7 +12,7 @@
         android:background="@drawable/start03">
 
         <CheckBox
-            android:id="@+id/checkBox"
+            android:id="@+id/cb_dontsee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="다시 보지 않기"
