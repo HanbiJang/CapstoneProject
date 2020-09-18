@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.myregisterlogin">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:hardwareAccelerated="false"
+        android:icon="@mipmap/app_icon"
+        android:label="모두의 산책"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/app_icon"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name="myinformation.MySettings"
+            ></activity>
+        <activity android:name="main.SystemInform" />
+        <activity android:name="registerlogin.RegisterMyInform" />
+        <activity
+            android:name="function1.PopupActivity"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity android:name="function1.MyStartWalk" />
+        <activity android:name="function1.MyStartWalkMain" />
+        <activity android:name="main.StartActivity" />
+        <activity
+            android:name="main.SplashActivity"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/SplashTheme">
+            <intent-filter> <!-- 스플래시 이미지 화면을 첫화면으로 설정하기 -->
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="registerlogin.LoginActivity" />
+        <activity android:name="registerlogin.RegisterActivity" />
+        <activity android:name="main.MainActivity" />
+        <activity android:name="myinformation.MyInformCheck" />
+        <activity android:name="myinformation.MyInformChange" />
+        <activity android:name="map.MainMap" />
+        <activity android:name="map.Roadguide"
+            android:windowSoftInputMode="adjustNothing"/>
+        <activity android:name="map.Review_main"/>
+        <activity android:name="registerreview.RegisterActivityReview"
+            android:windowSoftInputMode="adjustNothing" />
+    </application>
+
+</manifest>
