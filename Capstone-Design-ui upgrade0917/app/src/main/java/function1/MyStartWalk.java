@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -18,8 +19,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Vibrator;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -88,6 +93,7 @@ public class MyStartWalk extends AppCompatActivity {
     private Location mLastlocation = null;
     private double speed = 0.0;
     double totalDist=0, totalTime=0;
+    LocationManager locationManager = null;
 
     //위치받는 핸들러
     public final static int REPEAT_DELAY = 1000;
@@ -109,6 +115,9 @@ public class MyStartWalk extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_start_walk);
 
+        //진동
+        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.vibrate(900);
 
 
         //산책시작메인 화면에서 넘어온 아이디 정보 받기
@@ -133,6 +142,8 @@ public class MyStartWalk extends AppCompatActivity {
 
         // 스톱워치 기능
         timeThread = new Thread(new TimeThread());
+
+
 
         // 기피견종 알림 기능 (멈춰있을 때도 작동)
         //서버에서 사용자 정보를 가져와 변수에 저장한 후 badDogThread에 넘겨준다 : 넘길 정보 - 사용자의 기피견종 GetMyBadDog
@@ -178,16 +189,17 @@ public class MyStartWalk extends AppCompatActivity {
 
         Log.d("11111", "기피견종 값은 :  in MyStartWalk   : " +  PreferenceManager.getString(MyStartWalk.this,"badDog"+userID));
 
+        //gps기능 활성화
+        startLocationService();
 
         //기피견종 알림
         if((PreferenceManager.getString(MyStartWalk.this,"badDogAlarm"+userID)).equals("true")) { //true면
             //위치받고 db에 갱신하기
-            startLocationService();
 //            GPShandler.sendEmptyMessage(0);
-
             badDogThread = new Thread((new BadDogThread(MyStartWalk.this, userID, PreferenceManager.getString(MyStartWalk.this, "badDog" + userID))));
             badDogThread.start();
         }
+
         else{
             //기피 견종 알림 기능을 켜시겠습니까?
             new android.app.AlertDialog.Builder(MyStartWalk.this)
@@ -272,12 +284,16 @@ public class MyStartWalk extends AppCompatActivity {
 //                                onBackPressed(); //취소버튼 누른거랑 동일한 효과
 
                                 //사용자 위도 경도 null 만듦
-                                //**********************************************************************고쳐야함**************************///
-                                //makeUserLocationNull(userID);
+                                makeUserLocationNull(userID);
+                                stopLocation();
 
-                                //20200915
-                                //시간 스탑
-                                badDogThread.interrupt();
+                                if (PreferenceManager.getString(MyStartWalk.this, "badDogAlarm"+userID).equals("true")) {
+                                    //20200915
+                                    //시간 스탑
+                                    badDogThread.interrupt();
+                                    PreferenceManager.setString(MyStartWalk.this, "badDogAlarm"+userID,"false"); //알림 끄기
+                                }
+
 
                                 Intent i = new Intent(MyStartWalk.this, MyStartWalkMain.class);
                                 i.putExtra("userID", userID);
@@ -361,11 +377,13 @@ public class MyStartWalk extends AppCompatActivity {
 
                                 //산책한 시간 파일에 저장
                                 saveWalkTime(new_walkMinute);
+                                stopLocation();
 
                                 if(PreferenceManager.getString(MyStartWalk.this, "badDogAlarm"+userID).equals("true")){
                                     //시간 스탑
                                     badDogThread.interrupt();
-                                    stopLocation();
+
+
                                     //사용자 위도 경도 null 만듦
                                     makeUserLocationNull(userID);
 
@@ -415,6 +433,12 @@ public class MyStartWalk extends AppCompatActivity {
         });
 
 
+    }
+
+    //뒤로가기 기능 막기
+    @Override
+    public void onBackPressed(){
+        //super.onBackPressed();
     }
 
     //사용자의 위도와 경도 값 null 만들기
@@ -931,7 +955,7 @@ public class MyStartWalk extends AppCompatActivity {
 
     };
 
-    LocationManager locationManager = null;
+
 
     public void startLocationService() {
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE); //LOCATION_SERVICE
@@ -953,7 +977,7 @@ public class MyStartWalk extends AppCompatActivity {
             Log.i("Location ", getLongitude + "" + getLatitude);
 
 
-            Toast.makeText(getApplicationContext(), "GPS", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "GPS :: ON", Toast.LENGTH_LONG).show();
 
             boolean isEnable = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
             Log.e("GPS Enable: ", "" + isEnable);

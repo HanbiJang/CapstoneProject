@@ -3,9 +3,17 @@ package function1.function4;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Vibrator;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.example.myregisterlogin.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -70,6 +79,11 @@ public class BadDogThread extends AppCompatActivity implements Runnable {
 
 
     void showAlert(Context context, Integer otherDogSizeNum){
+
+        //진동
+        Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.vibrate(700); //진동
+
         new AlertDialog.Builder(context)
                 .setTitle("경고")
                 .setMessage("20m내에 "+otherDogSizeNum+"명의 "+ badDog +" 사용자가 있습니다.")
@@ -77,6 +91,7 @@ public class BadDogThread extends AppCompatActivity implements Runnable {
                     public void onClick(DialogInterface dlg, int sumthin) { // 기본적으로 창은 닫히고 추가 작업은 없다(닫히면서 행해지는 것)
                     }
                 }).show();
+
     }
 
     void showError(Context context){ //화면에 에러 문구 표시

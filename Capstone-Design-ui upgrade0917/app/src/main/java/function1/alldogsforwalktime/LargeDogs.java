@@ -33,5 +33,6 @@ public class LargeDogs extends AllDogs {
         dogSpecies.put("알레스카 말라뮤트",dogSize);
         dogSpecies.put("사모예드",dogSize);
         dogSpecies.put("잉글리쉬 불독",dogSize);
+        dogSpecies.put("대형 믹스",dogSize);
     }
 }

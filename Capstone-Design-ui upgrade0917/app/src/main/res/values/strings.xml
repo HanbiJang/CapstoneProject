@@ -11,12 +11,14 @@
         <item>시츄</item>
         <item>요크셔테리어</item>
         <item>치와와</item>
+        <item>소형 믹스</item>
 
         <item>스피츠</item>
         <item>시바견</item>
         <item>웰시코기</item>
         <item>비글</item>
         <item>프렌치불독</item>
+        <item>중형 믹스</item>
 
         <item>골든리트리버</item>
         <item>시베리안 허스키</item>
@@ -25,6 +27,7 @@
         <item>알레스카 말라뮤트</item>
         <item>사모예드</item>
         <item>잉글리쉬 불독</item>
+        <item>대형 믹스</item>
     </string-array>
     <string-array name="smallDogSpecies">
         <item>포메라니안</item>
@@ -35,6 +38,7 @@
         <item>시츄</item>
         <item>요크셔테리어</item>
         <item>치와와</item>
+        <item>소형 믹스</item>
     </string-array>
 
     <string-array name="mediumDogSpecies">
@@ -43,6 +47,7 @@
         <item>웰시코기</item>
         <item>비글</item>
         <item>프렌치불독</item>
+        <item>중형 믹스</item>
     </string-array>
 
     <string-array name="largeDogSpecies">
@@ -53,6 +58,7 @@
         <item>알레스카 말라뮤트</item>
         <item>사모예드</item>
         <item>잉글리쉬 불독</item>
+        <item>대형 믹스</item>
     </string-array>
 
     <string-array name="dogSize">

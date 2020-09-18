@@ -27,12 +27,13 @@ public class SmallDogs extends AllDogs {
     @Override
     public void setDogSpecies(HashMap<String,String> dogSpecies){
         dogSpecies.put("포메라니안",dogSize);
-        dogSpecies.put("비숑프리제 ",dogSize);
+        dogSpecies.put("비숑프리제",dogSize);
         dogSpecies.put("푸들",dogSize);
         dogSpecies.put("닥스훈트",dogSize);
         dogSpecies.put("말티즈",dogSize);
         dogSpecies.put("시츄",dogSize);
         dogSpecies.put("요크셔테리어",dogSize);
         dogSpecies.put("치와와",dogSize);
+        dogSpecies.put("소형 믹스",dogSize);
     }
 }

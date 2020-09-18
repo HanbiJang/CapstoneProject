@@ -32,6 +32,6 @@ public class MediumDogs extends AllDogs {
         dogSpecies.put("웰시코기",dogSize);
         dogSpecies.put("비글",dogSize);
         dogSpecies.put("프렌치불독",dogSize);
-
+        dogSpecies.put("중형 믹스",dogSize);
     }
 }
