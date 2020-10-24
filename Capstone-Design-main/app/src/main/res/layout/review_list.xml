@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/user_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="사용자ID"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:id="@+id/user_score"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/bt_delete_review"
+        android:text="별점"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/bt_delete_review"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="7dp"
+        android:layout_marginBottom="5dp"
+        android:background="@android:drawable/ic_menu_delete"
+        android:backgroundTint="#000000" />
+
+    <TextView
+        android:id="@+id/review_txt"
+        android:layout_width="390dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="40dp"
+        android:padding="10dp"
+        android:text="TextView"
+        android:backgroundTint="#F6F6F6"
+        android:background="@drawable/button_background_round"
+        android:textSize="18dp"/>
+</RelativeLayout>
