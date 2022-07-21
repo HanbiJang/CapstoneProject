@@ -16,4 +16,9 @@
 ![20220721_125244_16](https://user-images.githubusercontent.com/68460391/180126852-1dc8287c-e58b-4b62-a911-d281cfc2902e.png)
 ![20220721_125244_17](https://user-images.githubusercontent.com/68460391/180126857-a03dd87c-e1ab-48b6-9c6d-0f1c470b35a1.png)
 
-
+### 기능
+- 사용자 정보 DB 저장 관리
+- 반려견 정보에 맞는 산책 시간 추천   
+- 기피 견종 (위험 견종) 알림   
+- 산책 경로 추천   
+- 산책 경로 리뷰   
