@@ -1,2 +1,3 @@
-# 2020_capstone_project
+# CapstoneProject
+반려견 산책 관리 안드로이드 어플리케이션
 2020년도 캡스톤 디자인 프로젝트
